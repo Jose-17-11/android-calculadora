@@ -49,11 +49,12 @@
                 android:layout_height="wrap_content"
                 android:text="*"
                 android:layout_marginTop="8dp"/>
+
             <Button
-                android:id="@+id/buttonResultado"
+                android:id="@+id/buttonDivision"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="="
+                android:text="/"
                 android:layout_marginTop="8dp"/>
         </TableRow>
         <TableRow>
@@ -73,6 +74,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3" />
+            <Button
+                android:id="@+id/buttonAc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AC" />
         </TableRow>
         <TableRow>
             <Button
@@ -91,6 +97,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="6" />
+            <Button
+                android:id="@+id/buttonResultado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="="/>
         </TableRow>
         <TableRow>
             <Button
@@ -109,7 +120,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="9" />
+            <Button
+                android:id="@+id/buttonCero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"/>
         </TableRow>
-
     </TableLayout>
 </LinearLayout>

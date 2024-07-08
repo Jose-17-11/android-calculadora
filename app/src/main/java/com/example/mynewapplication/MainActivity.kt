@@ -13,6 +13,7 @@ class MainActivity : ComponentActivity() {
 
         // Referenciar los componentes
         val textView = findViewById<TextView>(R.id.textView)
+        val button0 = findViewById<Button>(R.id.buttonCero)
         val button1 = findViewById<Button>(R.id.button1)
         val button2 = findViewById<Button>(R.id.button2)
         val button3 = findViewById<Button>(R.id.button3)
@@ -26,10 +27,15 @@ class MainActivity : ComponentActivity() {
         val buttonResta = findViewById<Button>(R.id.buttonRestas)
         val buttonMultiplicacion = findViewById<Button>(R.id.buttonMultiplicacion)
         val buttonResultado = findViewById<Button>(R.id.buttonResultado)
+        val buttonDivision = findViewById<Button>(R.id.buttonDivision)
+        val buttonAc = findViewById<Button>(R.id.buttonAc)
         var i = true
 
         // Manejar los clics de los botones
-        val buttons = listOf(button1, button2, button3, button4, button5, button6, button7, button8, button9, buttonSuma, buttonResta, buttonMultiplicacion, buttonResultado)
+        val buttons = listOf(button0, button1, button2, button3, button4,
+            button5, button6, button7, button8,
+            button9, buttonSuma, buttonResta, buttonMultiplicacion,
+            buttonResultado, buttonDivision, buttonAc)
         buttons.forEach { button ->
             button.setOnClickListener {
                 try {
@@ -48,6 +54,9 @@ class MainActivity : ComponentActivity() {
                         } else {
                             textView.text = "Expresión inválida"
                         }
+                    } else if(button.text.toString() == "AC") {
+                        textView.text = ""
+                        i = true
                     }
                 } catch (e: Exception) {
                     Log.e("MainActivity", "Error: ${e.message}")
@@ -61,23 +70,26 @@ class MainActivity : ComponentActivity() {
     fun esOperador(caracter: String): Boolean {
         return caracter == "+" || caracter == "-" || caracter == "*" || caracter == "/"
     }
-
+    fun esOperadorChar(caracter: Char): Boolean {
+        return caracter == '+' || caracter == '-' || caracter == '*' || caracter == '/'
+    }
     fun parseExpression(cadena: String): Triple<Double, Char, Double> {
         var var1 = ""
         var operador: Char? = null
         var var2 = ""
-        var isOperatorFound = false
-
+        var pass = true
         for (i in cadena.indices) {
             val char = cadena[i]
 
-            if (char.isDigit() && !isOperatorFound) {
+            if (char.isDigit() && pass) {
                 var1 += char
-            } else if (!char.isDigit() && !isOperatorFound) {
+            } else if (esOperadorChar(char)) {
                 operador = char
-                isOperatorFound = true
-            } else if (isOperatorFound && i != cadena.length - 1) {
+                pass = false
+            } else if (!pass) {
                 var2 += char
+            }else if (char=='=') {
+                break;
             }
         }
 
